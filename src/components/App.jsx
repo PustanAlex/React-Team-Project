@@ -7,12 +7,10 @@ export const App = () => {
         justifyContent: 'center',
         alignItems: 'center',
         fontSize: 40,
-        color: '#010101'
+        color: '#010101',
       }}
     >
-      Working Branch added
-    FTG Junky's workspace
-
+      Working Branch added FTG Junky's workspace florin
     </div>
   );
 };
