@@ -1,17 +1,16 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      Working Branch added
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from '../components/Pages/Home'; 
+import Statistics from '../components/Pages/Statistics'; 
 
-    </div>
-  );
+export const App = () => {
+    return (
+        <Router basename='/React-Team-Project'>
+            <Routes>
+                <Route path="/" element={<Home />}>
+                  <Route path="/statistics" element={<Statistics />} />
+                </Route>
+                
+            </Routes>
+        </Router>
+    );
 };
