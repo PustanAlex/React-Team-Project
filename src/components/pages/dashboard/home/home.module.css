@@ -1,6 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .navLinks {
   padding: 40px 339px 28px 16px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-decoration: none;
+
+  .linkContainer {
+    a {
+      text-decoration: none;
+      color: #fbfbfb;
+      font-family: Poppins;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 27px;
+      text-align: left;
+    }
+
+    a:active {
+      font-weight: 700;
+    }
+
+    div {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      align-items: center;
+      gap: 20px;
+
+      .iconenvelope {
+        width: 24px;
+        height: 24px;
+        fill: #fbfbfb;
+      }
+
+      .iconenvelope:active {
+        fill: #4a56e280;
+      }
+    }
+  }
 }
+
 .homeContainer {
   display: flex;
   flex-direction: row;
@@ -8,11 +50,12 @@
   position: relative;
 
   .leftSide {
-    background: linear-gradient(
-      219.62deg,
-      rgba(109, 84, 235, 0.6) 28.31%,
-      rgba(101, 35, 146, 0.6) 66.76%
-    );
+    background: linear-gradient(207.18deg, #341fa0 46.11%, #652392 63.65%),
+      linear-gradient(
+        219.62deg,
+        rgba(109, 84, 235, 0.6) 28.31%,
+        rgba(101, 35, 146, 0.6) 66.76%
+      );
 
     .balanceContainer {
       display: flex;
@@ -44,11 +87,49 @@
     }
 
     .currencyContainer {
-      width: 480px;
-      height: 380px;
       margin-top: 32px;
       box-shadow: 0px 4px 60px 0px #00000040;
       text-align: center;
+
+      .currencyTable {
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+        text-align: center;
+        color: #fbfbfb;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+
+        tr {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0px;
+          padding: 16px;
+        }
+        thead {
+          background-color: #ffffff33;
+          align-items: center;
+        }
+
+        tbody {
+          display: flex;
+          flex-direction: column;
+        }
+
+        th,
+        td {
+          flex: 1;
+        }
+      }
+
+      .chartContainer {
+        width: 100%;
+        padding: 16px;
+        align-items: center;
+      }
     }
   }
 
@@ -58,6 +139,7 @@
       rgba(109, 84, 235, 0.6) 28.31%,
       rgba(101, 35, 146, 0.6) 66.76%
     );
+
     width: 100%;
 
     .statisticContainer {
