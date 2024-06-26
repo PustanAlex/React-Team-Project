@@ -1,0 +1,130 @@
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 23px 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../../Images/Icons/mobileLogin.webp');
+    background-color: #101010;
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .loginContainer {
+      background-image: url('../../Images/Icons/tabletLogin.webp');
+    }
+  }
+  
+  @media only screen and (min-width: 1280px) {
+    .loginContainer {
+      background-image: url('../../Images/Icons/desctopLogin.webp');
+    }
+  }
+  .loginBox{
+    width: 533px;
+    height: 570px;
+    top: 75px;
+    left: 374px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .formGroup {
+    margin-bottom: 20px;
+  }
+  
+  .formLabel {
+    color: rgba(156, 163, 175, 1);
+    max-width: 100%;
+    position: relative;
+    height: 45px;
+    margin-bottom: 10px;
+  }
+  
+  .formInput {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 18px;
+    /* color: transparent;; */
+    color: rgba(255, 255, 255, 0.6);
+    padding: 5px 11px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  }
+  
+  .error {
+    margin-left: 12px;
+    padding-top: 6px;
+    color: rgba(255, 0, 0, 0.8);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .loginButton {
+    border-radius: 20px;
+    max-height: 50px;
+    padding: 13px 0;
+    background: linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%);
+    box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    border: none;
+    color: #fbfbfb;
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: scale 250ms ease-in-out, box-shadow 250ms ease-in-out;
+  }
+  
+  .loginButton:hover {
+    scale: 0.99;
+    box-shadow: 3px 5px 8px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  .registerLink {
+    width: 100%;
+    max-width: 280px;
+    max-height: 50px;
+    padding: 13px 0;
+    outline: transparent;
+    cursor: pointer;
+    margin-top: 20px;
+    color: rgba(98, 63, 139, 1);
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+    border-radius: 20px;
+    background: #fcfcfc;
+    box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+    transition: scale 250ms ease-in-out, box-shadow 250ms ease-in-out;
+  }
+  
+  .registerLink:hover {
+    scale: 0.99;
+    box-shadow: 3px 5px 8px 3px rgba(0, 0, 0, 0.5);
+  }
+  
