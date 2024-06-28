@@ -1,6 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+import { setToken } from '../../API/apiAuth'; 
+
+export const refreshUser = createAsyncThunk('auth/refreshUser', async (_, thunkAPI) => {
+  try {
+    const token = localStorage.getItem('token');
+    setToken(token); 
+
+    const response = await axios.get('https://wallet.b.goit.study/api/users/current');
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data);
+  }
+});
+
 
 export const registerUser = createAsyncThunk('auth/register', async (userData, thunkAPI) => {
   try {
