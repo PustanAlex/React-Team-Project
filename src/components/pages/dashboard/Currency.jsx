@@ -90,33 +90,31 @@ function Currency() {
 
   return (
     <div className={styles.currencyContainer}>
-      {error && <p>Error: {error}</p>}
-      {currencyData ? (
-        <div>
-          <table className={styles.currencyTable}>
-            <thead>
-              <tr>
-                <th>Currency</th>
-                <th>Purchase</th>
-                <th>Sale</th>
-                <th>Rate</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.entries(currencyData.rates).map(([currency, rate]) => (
-                <tr key={currency}>
-                  <td>{currency}</td>
-                  <td>{rate.bid}</td>
-                  <td>{rate.ask}</td>
-                  <td>{rate}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+  {error && <p>Error: {error}</p>}
+  {currencyData ? (
+    <div>
+      <div className={styles.currencyTable}>
+        <div className={styles.currencyHeader}>
+          <div>Currency</div>
+          <div>Purchase</div>
+          <div>Sale</div>
+          <div>Rate</div>
         </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+        <div className={styles.currencyBody}>
+          {Object.entries(currencyData.rates).map(([currency, rate]) => (
+            <div key={currency} className={styles.currencyRow}>
+              <div>{currency}</div>
+              <div>{rate.bid}</div>
+              <div>{rate.ask}</div>
+              <div>{rate}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  ) : (
+    <p>Loading...</p>
+  )}
 
       {/* Chart */}
       <div className={styles.chartContainer}>

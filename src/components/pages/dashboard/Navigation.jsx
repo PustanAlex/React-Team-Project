@@ -22,6 +22,15 @@ function Navigation() {
           </svg><span>Statistics</span>
            </div>
         </NavLink></li>
+
+        <li className={styles.linkContainer} >
+          <NavLink to="/statistics">
+           <div>
+           <svg className={styles.iconenvelope} >
+              <use href={icons+"#icon-baseline-balance"}></use>
+          </svg><span>Balance</span>
+           </div>
+        </NavLink></li>
       </menu>
     );
 }
