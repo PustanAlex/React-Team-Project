@@ -62,6 +62,7 @@
         rgba(109, 84, 235, 0.6) 28.31%,
         rgba(101, 35, 146, 0.6) 66.76%
       );
+      border-right: 1px solid #ffffff77;
 
     .balanceContainer {
       display: flex;
@@ -338,7 +339,7 @@
         width: 100%;
         margin: 0;
         padding: 0;
-
+        border-right: 0px;
         .balanceWrapper {
           justify-content: flex-start;
           align-items: flex-start;
