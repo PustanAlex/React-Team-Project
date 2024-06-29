@@ -103,6 +103,7 @@
 
     .currencyContainer {
       margin-top: 32px;
+      width: 100%;
       box-shadow: 0px 4px 60px 0px #00000040;
       text-align: center;
 
