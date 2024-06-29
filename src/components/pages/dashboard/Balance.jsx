@@ -2,7 +2,7 @@ import styles from './home/home.module.css';
 
 function Balance() {
 const currency = "$";
-const balance ="2,345";
+const balance ="0";
 
   return (
     <div className={styles.balanceContainer}>
