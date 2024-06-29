@@ -1,10 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { App } from 'components/App';
+// import { App } from 'components/App';
 import './index.css';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+
+
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import store from './components/redux/store';
+import {App} from './components/App.jsx';
+import {  setToken } from './components/API/apiAuth';
+
+const token = localStorage.getItem('token');
+if (token) {
+  setToken(token);
+}
+
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
+  </Provider>
 );
