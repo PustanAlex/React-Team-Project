@@ -387,6 +387,7 @@
       .table {
         display: grid;
         border-collapse: collapse;
+        padding-top: 46px;
       }
 
       .tableHeader {
