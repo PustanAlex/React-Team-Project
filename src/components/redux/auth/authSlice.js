@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerUser, login, logout } from './authActions';
+import { registerUser, login, logout, refreshUser } from './authActions';
 
 const initialState = {
   user: JSON.parse(localStorage.getItem('user')) || null,
@@ -40,6 +40,15 @@ const authSlice = createSlice({
         localStorage.removeItem('token');
       })
       .addCase(logout.rejected, (state, action) => {
+        state.error = action.payload.message;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isAuthenticated = true;
+        state.error = null;
+        localStorage.setItem('user', JSON.stringify(action.payload.user));
+      })
+      .addCase(refreshUser.rejected, (state, action) => {
         state.error = action.payload.message;
       });
   },

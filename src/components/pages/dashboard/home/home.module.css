@@ -46,7 +46,6 @@
 .homeContainer {
   display: flex;
   flex-direction: row;
-  padding: 10px;
   position: relative;
 
   .leftSide {
