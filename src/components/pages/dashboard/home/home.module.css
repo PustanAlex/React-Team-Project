@@ -149,11 +149,13 @@
   }
 
   .rightSide {
-    background: linear-gradient(
+   
+    background: #101010 linear-gradient(
       219.62deg,
       rgba(109, 84, 235, 0.6) 28.31%,
       rgba(101, 35, 146, 0.6) 66.76%
     );
+    
     width: 100%;
     padding: 0px;
 
