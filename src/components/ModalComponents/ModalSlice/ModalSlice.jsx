@@ -1,5 +1,5 @@
-const { createSlice } = require("@reduxjs/toolkit");
+// const { createSlice } = require("@reduxjs/toolkit");
 
-const ModalSlice = createSlice({
+// const ModalSlice = createSlice({
     
-})
+// })

@@ -1,4 +1,5 @@
 const { createAsyncThunk } = require("@reduxjs/toolkit");
+import axios from "axios";
 
 export const fetchOperations = createAsyncThunk(
 // TODO: add fetch
