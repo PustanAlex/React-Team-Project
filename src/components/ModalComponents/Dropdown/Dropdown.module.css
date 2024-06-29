@@ -1,0 +1,102 @@
+.statistics {
+  padding: 20px;
+}
+
+.table {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.tableHeader, .tableBody {
+  width: 100%;
+}
+
+.tableRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.tableCell {
+  flex: 1;
+  padding: 10px;
+}
+
+.deleteBtn, .editBtn {
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+
+.openModalBtn {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+}
+
+.closeModalBtn {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.dropdownContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputText {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+.submitButton {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.selectDropdown {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
