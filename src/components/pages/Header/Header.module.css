@@ -1,0 +1,104 @@
+.styledHeader {
+    display: flex;
+    width: 100%;
+    min-height: 60px;
+    background: linear-gradient(270deg, #2e1746 3.2%, #2e225f 99.98%);
+    box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25), 0 -3px 2px 0 rgba(0, 0, 0, 0.1) inset;
+  
+    @media only screen and (min-width: 768px) {
+      height: 80px;
+    }
+  }
+  
+  .headerWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logoWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    width: 115px;
+    margin-left: 15px;
+  
+    p {
+      font-size: 12.84px;
+      line-height: 1.51;
+      color: #fbfbfb;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+  
+    @media only screen and (min-width: 768px) {
+      p {
+        font-size: 17.1px;
+      }
+  
+      svg {
+        width: 23.489px;
+        height: 22.468px;
+      }
+    }
+  }
+  
+  .userInfoWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color:rgba(255, 255, 255, 0.6);
+    text-align: right;
+    font-size: 18px;
+    line-height: 1.33;
+  
+    @media only screen and (min-width: 768px) {
+      gap: 24px;
+    }
+  }
+  
+  .exitText {
+    font-size: 18px;
+    position: relative;
+    line-height: 1.33;
+    margin-right: 25px;
+  }
+  
+  .usernameText {
+    font-size: 18px;
+    position: relative;
+    line-height: 1.33;
+  
+    @media only screen and (min-width: 768px) {
+      &::after {
+        content: '';
+        height: 30px;
+        width: 1px;
+        position: absolute;
+        right: -12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color:rgba(255, 255, 255, 0.6);
+        border-radius: 2px;
+      }
+    }
+  }
+  
+  .styledExit {
+    background-color: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    padding: 0;
+    gap: 8px;
+    cursor: pointer;
+    transition: color 250ms ease-in-out;
+  
+    &:hover {
+      color: var(--icon-violet);
+    }
+  }
+  
