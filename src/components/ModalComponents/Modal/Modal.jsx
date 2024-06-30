@@ -38,7 +38,6 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
         <div className={styles.modalContent}>
           <h2>Add Transaction</h2>
           <div className={styles.inputGroup}>
-            <label className={styles.label}>Date:</label>
             <DatePicker
               selected={newOperation.date ? new Date(newOperation.date) : null}
               onChange={handleDateChange}
@@ -48,7 +47,6 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
             />
           </div>
           <div className={styles.inputGroup}>
-            <label className={styles.label}>Type:</label>
             <div className={styles.buttonGroup}>
               <button
                 className={`${styles.typeButton} ${newOperation.type === 'INCOME' ? styles.active : ''}`}
@@ -57,7 +55,7 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
                 Income
               </button>
               <button
-                className={`${styles.typeButton} ${newOperation.type === 'EXPENSE' ? styles.active : ''}`}
+                className={`${styles.typeButton} ${newOperation.type === 'EXPENSE' ? styles.redActive : ''}`}
                 onClick={() => handleTypeChange('EXPENSE')}
               >
                 Expense
@@ -65,15 +63,13 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
             </div>
           </div>
           <div className={styles.inputGroup}>
-            <label className={styles.label}>Category:</label>
             <Dropdown
               onSelect={handleCategoryChange}
               selectedCategory={newOperation.category}
             />
           </div>
           <div className={styles.inputGroup}>
-            <label className={styles.label}>Comment:</label>
-            <input
+            <input className={styles.inputText}
               type="text"
               name="comment"
               value={newOperation.comment}
@@ -82,13 +78,12 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
             />
           </div>
           <div className={styles.inputGroup}>
-            <label className={styles.label}>Sum:</label>
-            <input
+            <input className={styles.inputText}
               type="text"
               name="sum"
               value={newOperation.sum}
               onChange={handleChange}
-              placeholder="Sum"
+              placeholder="Ammount"
             />
           </div>
           <div className={styles.buttonGroup}>
