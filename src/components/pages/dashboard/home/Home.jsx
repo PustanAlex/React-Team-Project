@@ -1,49 +1,34 @@
-import React, { useState } from 'react';
-import styles from './home.module.css';
-import { MdOutlineModeEditOutline } from 'react-icons/md';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { openModal, closeModal, setNewOperation } from 'components/ModalComponents/ModalSlice/ModalSlice';
+import { createOperation } from 'components/redux/fetchOperations/fetchOperations';
 import Modal from 'components/ModalComponents/Modal/Modal';
+import styles from './home.module.css';
 import { nanoid } from 'nanoid';
+import { MdOutlineModeEditOutline } from 'react-icons/md';
 
 function Home() {
-  const [rows, setRows] = useState([]);
-
-  const [newOperation, setNewOperation] = useState({
-    id: nanoid(),
-    date: '',
-    type: 'INCOME',
-    category: '',
-    comment: '',
-    sum: '',
-  });
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleDeleteRow = (id) => {
-    const updatedRows = rows.filter((row) => row.id !== id);
-    setRows(updatedRows);
-  };
-
-  const handleAddOperation = (operation) => {
-    const updatedOperation = {
-      ...operation,
-    };
-    setRows([...rows, updatedOperation]);
-  };
+  const dispatch = useDispatch();
+  const { operations, newOperation, isModalOpen } = useSelector((state) => state.modal);
 
   const handleOpenModal = () => {
-    setNewOperation({
+    dispatch(setNewOperation({
       id: nanoid(),
       date: '', 
       type: 'INCOME', 
       category: '',
       comment: '',
       sum: '', 
-    });
-    setIsModalOpen(true);
+    }));
+    dispatch(openModal());
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    dispatch(closeModal());
+  };
+
+  const handleAddOperation = (operation) => {
+    dispatch(createOperation(operation));
   };
 
   return (
@@ -55,7 +40,7 @@ function Home() {
         <Modal
           handleCloseModal={handleCloseModal}
           newOperation={newOperation}
-          setNewOperation={setNewOperation}
+          setNewOperation={(operation) => dispatch(setNewOperation(operation))}
           handleAddOperation={handleAddOperation}
         />
       )}
@@ -71,29 +56,16 @@ function Home() {
           </div>
         </div>
         <div className={styles.tableBody}>
-          {rows.map((row) => (
+          {operations.map((row) => (
             <div className={styles.transaction} key={row.id}>
               <div className={styles.tableRow}>
+                <div className={styles.tableCell}>{row.date}</div>
+                <div className={styles.tableCell}>{row.type}</div>
+                <div className={styles.tableCell}>{row.category || 'No category selected'}</div>
+                <div className={styles.tableCell}>{row.comment}</div>
+                <div className={styles.tableCell}>{row.sum} Lei</div>
                 <div className={styles.tableCell}>
-                {row.date}
-                </div>
-                <div className={styles.tableCell}>
-                  {row.type}
-                </div>
-                <div className={styles.tableCell}>
-                  {row.category ? row.category : 'No category selected'}
-                </div>
-                <div className={styles.tableCell}>
-                  {row.comment}
-                </div>
-                <div className={styles.tableCell}>
-                {row.sum} Lei
-                </div>
-                <div className={styles.tableCell}>
-                  <button
-                    className={styles.deleteBtn}
-                    onClick={() => handleDeleteRow(row.id)}
-                  >
+                  <button className={styles.deleteBtn}>
                     Delete
                   </button>
                   <button className={styles.editBtn}>
@@ -115,4 +87,3 @@ function Home() {
 }
 
 export default Home;
-
