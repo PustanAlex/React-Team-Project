@@ -1,8 +1,9 @@
-@import-normalize; /* bring in normalize.css styles */
+/* @import-normalize; //bring in normalize.css styles */
+@import url('./fonts/fonts.css');
 
 body {
   margin: 0;
-  font-family: 'Poppins-Regular', sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #101010;
@@ -38,29 +39,5 @@ img {
 }
 
 button {
-  font-family: 'Poppins-Regular', sans-serif;
-}
-
-@font-face {
-  font-family: 'Poppins-Bold';
-  src: url('./fonts/Poppins-Bold.ttf');
-  font-weight: bold;
-  font-style: normal;
-  font-display: fallback;
-}
-
-@font-face {
-  font-family: 'Poppins-Regular';
-  src: url('./fonts/Poppins-Regular.ttf');
-  font-weight: 400;
-  font-style: normal;
-  font-display: fallback;
-}
-
-@font-face {
-  font-family: 'Poppins-SemiBold';
-  src: url('./fonts/Poppins-SemiBold.ttf');
-  font-weight: 600;
-  font-style: normal;
-  font-display: fallback;
+  font-family: 'Poppins', sans-serif;
 }
