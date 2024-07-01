@@ -1,8 +1,7 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { openModal, closeModal, setNewOperation } from 'components/ModalComponents/ModalSlice/ModalSlice';
-import { createOperation } from 'components/redux/fetchOperations/fetchOperations';
-import Modal from 'components/ModalComponents/Modal/Modal';
+import { openModal, closeModal, setNewOperation } from '../../../ModalComponents/ModalSlice/ModalSlice';
+import { createOperation } from '../../../redux/fetchOperations/fetchOperations';
+import Modal from '../../../ModalComponents/Modal/Modal';
 import styles from './home.module.css';
 import { nanoid } from 'nanoid';
 import { MdOutlineModeEditOutline } from 'react-icons/md';

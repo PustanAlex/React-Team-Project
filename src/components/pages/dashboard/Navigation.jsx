@@ -7,7 +7,7 @@ function Navigation() {
     return (
       <menu className={styles.navLinks}>
         <li className={styles.linkContainer}>
-          <NavLink to="/home">
+          <NavLink to="home">
           <div>
           <svg className={styles.iconenvelope}  width={24} height={24}>
               <use href={icons+"#icon-baseline-home"}></use>
@@ -15,7 +15,7 @@ function Navigation() {
           </div>
         </NavLink></li>
         <li className={styles.linkContainer} >
-          <NavLink to="/statistics">
+          <NavLink to="statistics">
            <div>
            <svg className={styles.iconenvelope} >
               <use href={icons+"#icon-baseline-statistics"}></use>
@@ -24,7 +24,7 @@ function Navigation() {
         </NavLink></li>
 
         <li className={styles.linkContainer} >
-          <NavLink to="/statistics">
+          <NavLink to="statistics">
            <div>
            <svg className={styles.iconenvelope} >
               <use href={icons+"#icon-baseline-balance"}></use>

@@ -1,14 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
-import { setToken } from '../../API/apiAuth'; 
+import { setToken, api } from '../../API/apiAuth';
 
 export const refreshUser = createAsyncThunk('auth/refreshUser', async (_, thunkAPI) => {
   try {
     const token = localStorage.getItem('token');
-    setToken(token); 
+    setToken(token);
 
-    const response = await axios.get('https://wallet.b.goit.study/api/users/current');
+    const response = await api.get('users/current');
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
@@ -18,7 +17,7 @@ export const refreshUser = createAsyncThunk('auth/refreshUser', async (_, thunkA
 
 export const registerUser = createAsyncThunk('auth/register', async (userData, thunkAPI) => {
   try {
-    const response = await axios.post('https://wallet.b.goit.study/api/auth/sign-up', userData);
+    const response = await api.post('auth/sign-up', userData);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
@@ -27,7 +26,7 @@ export const registerUser = createAsyncThunk('auth/register', async (userData, t
 
 export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
-    const response = await axios.post('https://wallet.b.goit.study/api/auth/sign-in', credentials);
+    const response = await api.post('auth/sign-in', credentials);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
@@ -35,15 +34,15 @@ export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI
 });
 
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.delete('https://wallet.b.goit.study/api/auth/sign-out', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
+  try {
+    const token = localStorage.getItem('token');
+    const response = await api.delete('auth/sign-out', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data);
+  }
 });
