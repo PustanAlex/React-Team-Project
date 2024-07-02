@@ -3,7 +3,6 @@ import Balance from './Balance';
 import Currency from './Currency';
 import styles from './home/home.module.css';
 import { Outlet } from 'react-router-dom';
-import Home from './home/Home'
 import Header from '../Header/Header';
 
 
@@ -18,7 +17,6 @@ function DashboardPage() {
           <Currency />
         </div>
         <div className={styles.rightSide}>
-          <Home />
           <Outlet />
         </div>
       </div>

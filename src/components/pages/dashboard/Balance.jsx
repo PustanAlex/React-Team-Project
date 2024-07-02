@@ -1,8 +1,10 @@
+import { useSelector } from 'react-redux';
 import styles from './home/home.module.css';
+import { selectBalance } from '../../redux/auth/selectors';
 
 function Balance() {
-const currency = "$";
-const balance ="0";
+const currency = "lei";
+const balance = (+useSelector(selectBalance)).toFixed(2);
 
   return (
     <div className={styles.balanceContainer}>
