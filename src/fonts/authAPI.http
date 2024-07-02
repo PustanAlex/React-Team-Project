@@ -39,6 +39,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyM
 
 POST https://wallet.b.goit.study/api/transactions
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyMy02OGI5LTQ3NmQtOWJiZS1kMTk0YjE3M2QzYTAiLCJpYXQiOjE3MTk0MTY0MTEsImV4cCI6MTAwMDAwMDE3MTk0MTY0MTJ9.DSexXXL1DioHnNHEI5U7ptOo220TX498IN4UvYJ8s94
+Content-Type: application/json
 
 {
   "transactionDate": "2024-06-20",
@@ -60,3 +61,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyM
 # }
 ###
 
+GET https://wallet.b.goit.study/api/transactions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyMy02OGI5LTQ3NmQtOWJiZS1kMTk0YjE3M2QzYTAiLCJpYXQiOjE3MTk0MTY0MTEsImV4cCI6MTAwMDAwMDE3MTk0MTY0MTJ9.DSexXXL1DioHnNHEI5U7ptOo220TX498IN4UvYJ8s94
+###
+
+DELETE https://wallet.b.goit.study/api/transactions/ece9a0cc-d7db-470e-9557-51b14ba81383
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyMy02OGI5LTQ3NmQtOWJiZS1kMTk0YjE3M2QzYTAiLCJpYXQiOjE3MTk0MTY0MTEsImV4cCI6MTAwMDAwMDE3MTk0MTY0MTJ9.DSexXXL1DioHnNHEI5U7ptOo220TX498IN4UvYJ8s94
+###
+
+PATCH https://wallet.b.goit.study/api/transactions/193f0aa2-e852-45e4-b8fd-4ed5f8520777
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyMy02OGI5LTQ3NmQtOWJiZS1kMTk0YjE3M2QzYTAiLCJpYXQiOjE3MTk0MTY0MTEsImV4cCI6MTAwMDAwMDE3MTk0MTY0MTJ9.DSexXXL1DioHnNHEI5U7ptOo220TX498IN4UvYJ8s94
+Content-Type: application/json
+
+{
+  "comment": "Lunch2"
+}
