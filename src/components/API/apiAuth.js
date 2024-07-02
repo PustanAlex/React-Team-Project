@@ -3,6 +3,9 @@ import axios from 'axios';
 
 export const api = axios.create({
   baseURL: 'https://wallet.b.goit.study/api/',
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 export const setToken = (token) => {
