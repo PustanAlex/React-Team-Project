@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap'); */
 
 .navLinks {
   padding: 12px 62px;
@@ -56,13 +56,13 @@
   .leftSide {
     background-image: url('../../../Images/Ellipse\ 19.png');
     width: 100%;
-    background: #101010 
+    background: #101010
       linear-gradient(
         219.62deg,
         rgba(109, 84, 235, 0.6) 28.31%,
         rgba(101, 35, 146, 0.6) 66.76%
       );
-      border-right: 1px solid #ffffff77;
+    border-right: 1px solid #ffffff77;
 
     .balanceContainer {
       display: flex;
@@ -112,7 +112,7 @@
         rgba(109, 84, 235, 0.6) 28.31%,
         rgba(101, 35, 146, 0.6) 66.76%
       );
-    
+
       .currencyTable {
         font-family: Poppins, sans-serif;
         font-size: 16px;
@@ -122,49 +122,49 @@
         color: #fbfbfb;
         width: 100%;
       }
-    
-      .currencyHeader, .currencyRow {
+
+      .currencyHeader,
+      .currencyRow {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 0px;
         padding: 19px;
       }
-    
+
       .currencyHeader {
         background-color: #ffffff33;
         font-weight: bold;
       }
-    
+
       .currencyBody {
         display: flex;
         flex-direction: column;
         background-color: #ffffff15;
       }
-    
+
       .currencyHeader div,
       .currencyRow div {
         flex: 1;
       }
-    
+
       .chartContainer {
         width: 100%;
         padding: 0px;
         display: flex;
         align-items: center;
-        size-adjust:calc(100% + 1.5px);
+        size-adjust: calc(100% + 1.5px);
       }
     }
-    
   }
 
   .rightSide {
-   
-    background: #101010 linear-gradient(
-      219.62deg,
-      rgba(109, 84, 235, 0.6) 28.31%,
-      rgba(101, 35, 146, 0.6) 66.76%
-    );
+    background: #101010
+      linear-gradient(
+        219.62deg,
+        rgba(109, 84, 235, 0.6) 28.31%,
+        rgba(101, 35, 146, 0.6) 66.76%
+      );
 
     width: 100%;
     padding: 0px;
@@ -329,7 +329,6 @@
 
   .homeContainer {
     flex-direction: row;
-   
 
     .leftSide {
       .balanceContainer {
@@ -346,8 +345,6 @@
           padding: 8px 0px 11px 56px;
         }
       }
-
-      
     }
 
     .currencyContainer {
@@ -361,7 +358,7 @@
         rgba(109, 84, 235, 0.6) 28.31%,
         rgba(101, 35, 146, 0.6) 66.76%
       );
-    
+
       .currencyTable {
         font-family: Poppins, sans-serif;
         font-size: 16px;
@@ -370,34 +367,33 @@
         text-align: center;
         color: #fbfbfb;
         width: 100%;
-        
-        
       }
-    
-      .currencyHeader, .currencyRow {
+
+      .currencyHeader,
+      .currencyRow {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 0px;
         padding: 19px;
       }
-    
+
       .currencyHeader {
         background-color: #ffffff33;
         font-weight: bold;
       }
-    
+
       .currencyBody {
         display: flex;
         flex-direction: column;
         background-color: #ffffff15;
       }
-    
+
       .currencyHeader div,
       .currencyRow div {
         flex: 1;
       }
-    
+
       .chartContainer {
         width: 100%;
         padding: 0;
@@ -407,7 +403,6 @@
     }
 
     .rightSide {
- 
       .table {
         display: grid;
         border-collapse: collapse;
@@ -418,8 +413,6 @@
         display: block;
         background-color: #ffffff34;
       }
-
-     
 
       .tableRow {
         display: grid;
@@ -437,10 +430,9 @@
 
       .transaction {
         border-radius: 0px;
-        background-color:transparent;
+        background-color: transparent;
         border-bottom: 1px solid #ffffff33;
 
-  
         .tableRow {
           flex-direction: row;
         }
@@ -448,10 +440,7 @@
           display: flex;
           flex-direction: row-reverse;
           gap: 8px;
-
-
         }
-
       }
 
       .deleteBtn {
@@ -484,10 +473,7 @@
         text-align: center;
         color: #ffffff99;
         align-items: center;
-  
-     
       }
     }
   }
 }
-

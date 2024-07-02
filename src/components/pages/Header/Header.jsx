@@ -1,29 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { IoExitOutline } from 'react-icons/io5';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { selectUserName } from '../../redux/selectors';
-import axios from 'axios';
+import { selectUserName } from '../../redux/auth/selectors';
 import styles from './Header.module.css';
 import icons from '../../Images/Icons/icons.svg';
+import { logout } from '../../redux/auth/authActions';
 
 function Header() {
   const userName = useSelector(selectUserName);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleLogout = async () => {
-    const token = localStorage.getItem('token');
-    try {
-      await axios.delete('https://wallet.b.goit.study/api/auth/sign-out', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      localStorage.removeItem('token'); 
+    const resultAction = await dispatch(logout());
+    if (logout.fulfilled.match(resultAction)) 
       navigate('/login'); 
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
   };
 
   return (

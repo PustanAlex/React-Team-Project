@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth/authSlice';
 import modalReducer from '../ModalComponents/ModalSlice/ModalSlice';
+import { transactionsReducer } from './transactions/slice';
 
 const preloadedState = {
   auth: {
@@ -28,6 +29,7 @@ const store = configureStore({
   reducer: {
     auth: authReducer,
     modal: modalReducer,
+    transactions: transactionsReducer,
   },
   preloadedState,
 });

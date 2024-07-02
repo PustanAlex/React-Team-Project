@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchOperations, createOperation } from 'components/redux/fetchOperations/fetchOperations';
+import { fetchOperations, createOperation } from '../../redux/fetchOperations/fetchOperations';
 
 const initialState = {
   operations: [],

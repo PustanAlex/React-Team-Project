@@ -1,15 +1,17 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { openModal, closeModal, setNewOperation } from 'components/ModalComponents/ModalSlice/ModalSlice';
-import { createOperation } from 'components/redux/fetchOperations/fetchOperations';
-import Modal from 'components/ModalComponents/Modal/Modal';
+import { openModal, closeModal, setNewOperation } from '../../../ModalComponents/ModalSlice/ModalSlice';
+import { createOperation } from '../../../redux/fetchOperations/fetchOperations';
+import Modal from '../../../ModalComponents/Modal/Modal';
 import styles from './home.module.css';
 import { nanoid } from 'nanoid';
 import { MdOutlineModeEditOutline } from 'react-icons/md';
+import { selectTransactions, selectCategories } from '../../../redux/transactions/selectors';
 
 function Home() {
   const dispatch = useDispatch();
-  const { operations, newOperation, isModalOpen } = useSelector((state) => state.modal);
+  const { newOperation, isModalOpen } = useSelector((state) => state.modal);
+  const transactions = useSelector(selectTransactions);
+  const categories = new Map(useSelector(selectCategories).map((category) => [category.id, category]));
 
   const handleOpenModal = () => {
     dispatch(setNewOperation({
@@ -56,14 +58,14 @@ function Home() {
           </div>
         </div>
         <div className={styles.tableBody}>
-          {operations.map((row) => (
+          {transactions.map((row) => (
             <div className={styles.transaction} key={row.id}>
               <div className={styles.tableRow}>
-                <div className={styles.tableCell}>{row.date}</div>
+                <div className={styles.tableCell}>{row.transactionDate}</div>
                 <div className={styles.tableCell}>{row.type}</div>
-                <div className={styles.tableCell}>{row.category || 'No category selected'}</div>
+                <div className={styles.tableCell}>{categories.get(row.categoryId)?.name || 'No category selected'}</div>
                 <div className={styles.tableCell}>{row.comment}</div>
-                <div className={styles.tableCell}>{row.sum} Lei</div>
+                <div className={styles.tableCell}>{row.amount} Lei</div>
                 <div className={styles.tableCell}>
                   <button className={styles.deleteBtn}>
                     Delete
