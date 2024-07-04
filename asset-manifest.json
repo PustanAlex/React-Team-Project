@@ -1,13 +1,28 @@
 {
   "files": {
-    "main.css": "/React-Team-Project/static/css/main.7acaea2f.css",
-    "main.js": "/React-Team-Project/static/js/main.e8a89429.js",
+    "main.css": "/React-Team-Project/static/css/main.44b08672.css",
+    "main.js": "/React-Team-Project/static/js/main.831af703.js",
+    "static/media/Ellipse 19.png": "/React-Team-Project/static/media/Ellipse 19.f3a8a6dc587c168c0425.png",
+    "static/media/desctopRegister.webp": "/React-Team-Project/static/media/desctopRegister.4d04a4a93eccc2beb204.webp",
+    "static/media/tabletRegistr.webp": "/React-Team-Project/static/media/tabletRegistr.a07821c01d71a9c6800b.webp",
+    "static/media/desctopLogin.webp": "/React-Team-Project/static/media/desctopLogin.455a3304b47ab081804a.webp",
+    "static/media/tabletLogin.webp": "/React-Team-Project/static/media/tabletLogin.6fe88424d2836d318e69.webp",
+    "static/media/LEj6Z1xlFQ.woff2": "/React-Team-Project/static/media/LEj6Z1xlFQ.91145014c0350c248ed2.woff2",
+    "static/media/JJfecg.woff2": "/React-Team-Project/static/media/JJfecg.405055dd680fa1dcdfa2.woff2",
+    "static/media/LCz7Z1xlFQ.woff2": "/React-Team-Project/static/media/LCz7Z1xlFQ.d86662fe776dae29ea78.woff2",
+    "static/media/JJnecmNE.woff2": "/React-Team-Project/static/media/JJnecmNE.6f94f40f848d79872444.woff2",
+    "static/media/LEj6Z1JlFc-K.woff2": "/React-Team-Project/static/media/LEj6Z1JlFc-K.b6ff03a06be3905a0e8b.woff2",
+    "static/media/LCz7Z1JlFc-K.woff2": "/React-Team-Project/static/media/LCz7Z1JlFc-K.b5109c3e385395dfd649.woff2",
+    "static/media/symbol-defs.svg": "/React-Team-Project/static/media/symbol-defs.0c1db4c7cc8d0442e85957ea2d8b5b19.svg",
+    "static/media/icons.svg": "/React-Team-Project/static/media/icons.3330700ad70f6b75d3bf0ac66a654dcf.svg",
+    "static/media/mobileLogin.webp": "/React-Team-Project/static/media/mobileLogin.2da9430439eae880996b.webp",
+    "static/media/mobileRegistr.webp": "/React-Team-Project/static/media/mobileRegistr.cd96492ed450e20db6d0.webp",
     "index.html": "/React-Team-Project/index.html",
-    "main.7acaea2f.css.map": "/React-Team-Project/static/css/main.7acaea2f.css.map",
-    "main.e8a89429.js.map": "/React-Team-Project/static/js/main.e8a89429.js.map"
+    "main.44b08672.css.map": "/React-Team-Project/static/css/main.44b08672.css.map",
+    "main.831af703.js.map": "/React-Team-Project/static/js/main.831af703.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.e8a89429.js"
+    "static/css/main.44b08672.css",
+    "static/js/main.831af703.js"
   ]
 }
