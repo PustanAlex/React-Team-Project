@@ -1,7 +1,0 @@
-{
-  "transactionDate": "string",
-  "type": "INCOME",
-  "categoryId": "string",
-  "comment": "string",
-  "amount": 0
-}

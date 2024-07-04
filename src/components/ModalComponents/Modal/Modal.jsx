@@ -24,14 +24,15 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation }) => {
   };
 
   const handleCategoryChange = (categoryId) => {
-    setNewOperation({ ...newOperation, category: categoryId });
+    setNewOperation({ ...newOperation, categoryId });
   };
 
   const handleAdd = () => {
-    if (!newOperation.transactionDate || !newOperation.type || !newOperation.amount) {
+    if (!newOperation.transactionDate || !newOperation.type || !newOperation.amount ) {
       Notiflix.Notify.failure('Please fill out all fields!');
       return;
     }
+    
     dispatch(addTransaction(newOperation));
     handleCloseModal();
   };
@@ -69,7 +70,7 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation }) => {
           <div className={styles.inputGroup}>
             <Dropdown
               onSelect={handleCategoryChange}
-              selectedCategory={newOperation.category}
+              selectedCategory={newOperation.categoryId}
             />
           </div>
           <div className={styles.inputGroup}>

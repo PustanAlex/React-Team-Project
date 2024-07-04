@@ -13,11 +13,11 @@ export const fetchOperations = createAsyncThunk(
   }
 );
 
-export const createOperation = createAsyncThunk(
-  'transaction/addTransaction',
-  async (operationData, thunkAPI) => {
+export const addTransaction = createAsyncThunk(
+  'transactions/addTransaction',
+  async (newOperation, thunkAPI) => {
     try {
-      const response = await api.post('/transactions', operationData);
+      const response = await api.post('/transactions', newOperation);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);

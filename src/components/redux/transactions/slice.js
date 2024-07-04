@@ -75,8 +75,7 @@ const transactionsSlice = createSlice({
       .addCase(getTransactionsSummary.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getTransactionsSummary.fulfilled, (state, action) => {
-        // handle summary state if needed
+      .addCase(getTransactionsSummary.fulfilled, (state) => {
         state.loading = false;
       })
       .addCase(getTransactionsSummary.rejected, (state, action) => {

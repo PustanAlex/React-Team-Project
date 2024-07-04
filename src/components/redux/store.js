@@ -13,7 +13,7 @@ const preloadedState = {
     operations: [],
     newOperation: {
       transactionDate: '',
-      type: 'INCOME',
+      type: '',
       categoryId: '',
       comment: '',
       amount: '',

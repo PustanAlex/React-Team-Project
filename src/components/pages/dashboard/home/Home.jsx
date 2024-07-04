@@ -1,6 +1,7 @@
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { openModal, closeModal, setNewOperation } from '../../../ModalComponents/ModalSlice/ModalSlice';
-import { createOperation } from '../../../redux/fetchOperations/fetchOperations';
+import { addTransaction } from 'components/redux/transactions/operations';
 import Modal from '../../../ModalComponents/Modal/Modal';
 import styles from './home.module.css';
 import { MdOutlineModeEditOutline } from 'react-icons/md';
@@ -10,15 +11,15 @@ function Home() {
   const dispatch = useDispatch();
   const { newOperation, isModalOpen } = useSelector((state) => state.modal);
   const transactions = useSelector(selectTransactions);
-  const categories = new Map(useSelector(selectCategories).map((category) => [category.id, category]));
+  const categories = useSelector(selectCategories);
 
   const handleOpenModal = () => {
     dispatch(setNewOperation({
-      transactionDate: '', 
-      type: 'INCOME', 
-      categoryId: '',
+      transactionDate: '',
+      type: '',
+      categoryId: '', 
       comment: '',
-      amount: '', 
+      amount: '',
     }));
     dispatch(openModal());
   };
@@ -28,7 +29,7 @@ function Home() {
   };
 
   const handleAddOperation = (operation) => {
-    dispatch(createOperation(operation));
+    dispatch(addTransaction(operation));
   };
 
   return (
@@ -61,7 +62,7 @@ function Home() {
               <div className={styles.tableRow}>
                 <div className={styles.tableCell}>{row.transactionDate}</div>
                 <div className={styles.tableCell}>{row.type}</div>
-                <div className={styles.tableCell}>{categories.get(row.categoryId)?.name || 'No category selected'}</div>
+                <div className={styles.tableCell}>{categories.find(cat => cat.id === row.categoryId)?.name || 'No category selected'}</div>
                 <div className={styles.tableCell}>{row.comment}</div>
                 <div className={styles.tableCell}>{row.amount} Lei</div>
                 <div className={styles.tableCell}>
