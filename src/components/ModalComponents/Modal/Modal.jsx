@@ -1,20 +1,14 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './Modal.module.css';
 import Dropdown from '../Dropdown/Dropdown';
 import Notiflix from 'notiflix';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { getTransactionsCategories } from 'components/redux/transactions/operations';
-import { selectCategories } from '../../redux/transactions/selectors';
+import { addTransaction } from 'components/redux/transactions/operations';
 
-const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOperation }) => {
+const Modal = ({ handleCloseModal, newOperation, setNewOperation }) => {
   const dispatch = useDispatch();
-  const categories = useSelector(selectCategories);
-
-  useEffect(() => {
-    dispatch(getTransactionsCategories());
-  }, [dispatch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,8 +23,8 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
     setNewOperation({ ...newOperation, transactionDate: date.toISOString().slice(0, 10) });
   };
 
-  const handleCategoryChange = (category) => {
-    setNewOperation({ ...newOperation, category });
+  const handleCategoryChange = (categoryId) => {
+    setNewOperation({ ...newOperation, category: categoryId });
   };
 
   const handleAdd = () => {
@@ -38,7 +32,7 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
       Notiflix.Notify.failure('Please fill out all fields!');
       return;
     }
-    handleAddOperation(newOperation);
+    dispatch(addTransaction(newOperation));
     handleCloseModal();
   };
 
@@ -74,10 +68,8 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
           </div>
           <div className={styles.inputGroup}>
             <Dropdown
-              options={categories}
-              selected={newOperation.category}
               onSelect={handleCategoryChange}
-              placeholder="Select Category"
+              selectedCategory={newOperation.category}
             />
           </div>
           <div className={styles.inputGroup}>

@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../API/apiAuth';
 
 export const getTransactionsCategories = createAsyncThunk(
-  'getCategories',
+  'transactions/getCategories',
   async (_, thunkApi) => {
     try {
       const { data } = await api.get('/transaction-categories');
@@ -14,7 +14,7 @@ export const getTransactionsCategories = createAsyncThunk(
 );
 
 export const addTransaction = createAsyncThunk(
-  'transactions/new',
+  'transactions/addTransaction',
   async (transaction, thunkApi) => {
     try {
       const { data } = await api.post('/transactions', transaction);

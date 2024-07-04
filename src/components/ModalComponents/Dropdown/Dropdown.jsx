@@ -1,28 +1,34 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import styles from './Dropdown.module.css'; 
+import { useSelector, useDispatch } from 'react-redux';
 import { getTransactionsCategories } from 'components/redux/transactions/operations';
-import { selectCategories } from '../../redux/transactions/selectors';
+import styles from './Dropdown.module.css';
 
-const Dropdown = ({ selected, onSelect, placeholder }) => {
+const Dropdown = ({ onSelect, selectedCategory }) => {
   const dispatch = useDispatch();
-  const categories = useSelector(selectCategories);
+  const categories = useSelector(state => state.transactions.categories);
+  const loading = useSelector(state => state.transactions.loading);
 
   useEffect(() => {
     dispatch(getTransactionsCategories());
   }, [dispatch]);
+
+  const handleSelectChange = (e) => {
+    const categoryId = e.target.value;
+    onSelect(categoryId);
+  };
 
   return (
     <div className={styles.dropdownContainer}>
       <div className={styles.dropdown}>
         <select 
           className={styles.selectDropdown} 
-          value={selected}
-          onChange={(e) => onSelect(e.target.value)}
+          value={selectedCategory} 
+          onChange={handleSelectChange} 
+          disabled={loading}
         >
-          <option value="" disabled hidden>{placeholder}</option>
+          <option value="" disabled hidden>Select category...</option>
           {categories.map((category) => (
-            <option key={category.id} value={category.name}>{category.name}</option>
+            <option key={category.id} value={category.id}>{category.name}</option>
           ))}
         </select>
       </div>
