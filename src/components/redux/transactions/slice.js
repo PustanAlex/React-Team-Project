@@ -1,42 +1,89 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  addTransaction,
-  getAllTransactions,
-  deleteTransaction,
-  getTransactionsCategories, updatedTransaction,
-} from './operations';
+import { getTransactionsCategories, getAllTransactions, addTransaction, updatedTransaction, deleteTransaction, getTransactionsSummary } from './operations';
 
 const initialState = {
-  categories: [],
   transactions: [],
+  categories: [],
+  loading: false,
+  error: null,
 };
 
-const slice = createSlice({
+const transactionsSlice = createSlice({
   name: 'transactions',
   initialState,
-  extraReducers: builder => {
+  reducers: {},
+  extraReducers: (builder) => {
     builder
-      .addCase(getTransactionsCategories.fulfilled, (state, { payload }) => {
-        state.categories = payload
+      .addCase(getTransactionsCategories.pending, (state) => {
+        state.loading = true;
       })
-      .addCase(getAllTransactions.fulfilled, (state, { payload }) => {
-        state.transactions = payload;
+      .addCase(getTransactionsCategories.fulfilled, (state, action) => {
+        state.categories = action.payload;
+        state.loading = false;
       })
-      .addCase(addTransaction.fulfilled, (state, { payload }) => {
-        state.transactions.push(payload);
-        state.auth.user.balance = payload.balanceAfter;
+      .addCase(getTransactionsCategories.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
       })
-      .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
-        const transactionIndex = state.transactions.findIndex(t => t.id === payload)
-        state.auth.user.balance -= state.transactions[transactionIndex].amount;
-        state.transactions.splice(transactionIndex, 1)
+      .addCase(getAllTransactions.pending, (state) => {
+        state.loading = true;
       })
-      .addCase(updatedTransaction.fulfilled, (state, { payload }) => {
-        const transactionIndex = state.transactions.findIndex(t => t.id === payload.id)
-        state.transactions[transactionIndex] = payload
-        state.auth.user.balance = payload.balanceAfter;
+      .addCase(getAllTransactions.fulfilled, (state, action) => {
+        state.transactions = action.payload;
+        state.loading = false;
+      })
+      .addCase(getAllTransactions.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+      })
+      .addCase(addTransaction.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(addTransaction.fulfilled, (state, action) => {
+        state.transactions.push(action.payload);
+        state.loading = false;
+      })
+      .addCase(addTransaction.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+      })
+      .addCase(updatedTransaction.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updatedTransaction.fulfilled, (state, action) => {
+        const index = state.transactions.findIndex(transaction => transaction.id === action.payload.id);
+        if (index !== -1) {
+          state.transactions[index] = action.payload;
+        }
+        state.loading = false;
+      })
+      .addCase(updatedTransaction.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+      })
+      .addCase(deleteTransaction.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteTransaction.fulfilled, (state, action) => {
+        state.transactions = state.transactions.filter(transaction => transaction.id !== action.payload);
+        state.loading = false;
+      })
+      .addCase(deleteTransaction.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+      })
+      .addCase(getTransactionsSummary.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getTransactionsSummary.fulfilled, (state, action) => {
+        // handle summary state if needed
+        state.loading = false;
+      })
+      .addCase(getTransactionsSummary.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
       });
   },
 });
 
-export const transactionsReducer = slice.reducer;
+export default transactionsSlice.reducer;

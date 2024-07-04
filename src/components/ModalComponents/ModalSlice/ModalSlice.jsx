@@ -4,12 +4,11 @@ import { fetchOperations, createOperation } from '../../redux/fetchOperations/fe
 const initialState = {
   operations: [],
   newOperation: {
-    id: '',
-    date: '',
+    transactionDate: '',
     type: 'INCOME',
-    category: '',
+    categoryId: '',
     comment: '',
-    sum: '',
+    amount: '',
   },
   isModalOpen: false,
   loading: false,

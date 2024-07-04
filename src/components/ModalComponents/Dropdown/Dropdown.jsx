@@ -1,45 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './Dropdown.module.css'; 
-const Dropdown = () => {
-  const [categoryText, setCategoryText] = useState('');
-  const [selectedCategories, setSelectedCategories] = useState([]);
+import { getTransactionsCategories } from 'components/redux/transactions/operations';
+import { selectCategories } from '../../redux/transactions/selectors';
 
+const Dropdown = ({ selected, onSelect, placeholder }) => {
+  const dispatch = useDispatch();
+  const categories = useSelector(selectCategories);
 
   useEffect(() => {
-    const storedCategories = JSON.parse(localStorage.getItem('selectedCategories')) || [];
-    setSelectedCategories(storedCategories);
-  }, []);
-
-
-  const handleAddCategory = () => {
-    if (categoryText.trim() !== '') {
-      const updatedCategories = [...selectedCategories, categoryText.trim()];
-      setSelectedCategories(updatedCategories);
-      localStorage.setItem('selectedCategories', JSON.stringify(updatedCategories));
-      setCategoryText(''); 
-    }
-  };
+    dispatch(getTransactionsCategories());
+  }, [dispatch]);
 
   return (
     <div className={styles.dropdownContainer}>
-      <div> 
-      <input
-        type="text"
-        className={styles.inputText}
-        value={categoryText}
-        onChange={(e) => setCategoryText(e.target.value)}
-        placeholder="Enter category..."
-      />
-      <button className={styles.submitButton} onClick={handleAddCategory}>
-        +
-      </button>
-      </div>
-     
       <div className={styles.dropdown}>
-        <select className={styles.selectDropdown} defaultValue="" onChange={() => {}}>
-          <option value="" disabled hidden>Select category...</option>
-          {selectedCategories.map((category, index) => (
-            <option key={index} value={category}>{category}</option>
+        <select 
+          className={styles.selectDropdown} 
+          value={selected}
+          onChange={(e) => onSelect(e.target.value)}
+        >
+          <option value="" disabled hidden>{placeholder}</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.name}>{category.name}</option>
           ))}
         </select>
       </div>
