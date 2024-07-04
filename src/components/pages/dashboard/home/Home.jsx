@@ -3,7 +3,6 @@ import { openModal, closeModal, setNewOperation } from '../../../ModalComponents
 import { createOperation } from '../../../redux/fetchOperations/fetchOperations';
 import Modal from '../../../ModalComponents/Modal/Modal';
 import styles from './home.module.css';
-import { nanoid } from 'nanoid';
 import { MdOutlineModeEditOutline } from 'react-icons/md';
 import { selectTransactions, selectCategories } from '../../../redux/transactions/selectors';
 
@@ -15,12 +14,11 @@ function Home() {
 
   const handleOpenModal = () => {
     dispatch(setNewOperation({
-      id: nanoid(),
-      date: '', 
+      transactionDate: '', 
       type: 'INCOME', 
-      category: '',
+      categoryId: '',
       comment: '',
-      sum: '', 
+      amount: '', 
     }));
     dispatch(openModal());
   };
