@@ -43,10 +43,10 @@ const authSlice = createSlice({
         state.error = action.payload.message;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user = action.payload;
         state.isAuthenticated = true;
         state.error = null;
-        localStorage.setItem('user', JSON.stringify(action.payload.user));
+        localStorage.setItem('user', JSON.stringify(action.payload));
       })
       .addCase(refreshUser.rejected, (state, action) => {
         state.error = action.payload.message;

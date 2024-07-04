@@ -1,0 +1,78 @@
+POST https://wallet.b.goit.study/api/auth/sign-up
+Content-Type: application/json
+
+{
+  "username": "Adrian Cross",
+  "email": "a.cross1@gmail.com",
+  "password": "examplepwd12345"
+}
+
+# {
+#   "user": {
+#     "username": "Adrian Cross",
+#     "email": "a.cross1@gmail.com",
+#     "id": "477a3e8e-96fd-45c7-84b6-1ad05a7f7add",
+#     "balance": 0
+#   },
+#   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyMy02OGI5LTQ3NmQtOWJiZS1kMTk0YjE3M2QzYTAiLCJpYXQiOjE3MTk0MTY0MTEsImV4cCI6MTAwMDAwMDE3MTk0MTY0MTJ9.DSexXXL1DioHnNHEI5U7ptOo220TX498IN4UvYJ8s94"
+# }
+###
+GET https://connections-api.herokuapp.com/contacts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjUyYjg4OTkwZTBiODAwMTQwMjQwNzUiLCJpYXQiOjE3MTY4MzIwNDl9.GGw2AGQGGCoF1oGydj3wVNjn5c-csfw8UwIUgtabbTs
+
+# {
+#   "message": "Please authenticate"
+# }
+###
+
+
+GET https://wallet.b.goit.study/api/users/current
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyMy02OGI5LTQ3NmQtOWJiZS1kMTk0YjE3M2QzYTAiLCJpYXQiOjE3MTk0MTY0MTEsImV4cCI6MTAwMDAwMDE3MTk0MTY0MTJ9.DSexXXL1DioHnNHEI5U7ptOo220TX498IN4UvYJ8s94
+
+# {
+#   "id": "477a3e8e-96fd-45c7-84b6-1ad05a7f7add",
+#   "username": "Adrian Cross",
+#   "email": "a.cross1@gmail.com",
+#   "balance": 0
+# }
+###
+
+POST https://wallet.b.goit.study/api/transactions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyMy02OGI5LTQ3NmQtOWJiZS1kMTk0YjE3M2QzYTAiLCJpYXQiOjE3MTk0MTY0MTEsImV4cCI6MTAwMDAwMDE3MTk0MTY0MTJ9.DSexXXL1DioHnNHEI5U7ptOo220TX498IN4UvYJ8s94
+Content-Type: application/json
+
+{
+  "transactionDate": "2024-06-20",
+  "type": "EXPENSE",
+  "categoryId": "c9d9e447-1b83-4238-8712-edc77b18b739",
+  "comment": "Lunch",
+  "amount": -10.50
+}
+
+# {
+#   "transactionDate": "2024-06-20",
+#   "type": "EXPENSE",
+#   "categoryId": "c9d9e447-1b83-4238-8712-edc77b18b739",
+#   "comment": "Lunch",
+#   "amount": -10.5,
+#   "balanceAfter": -10.5,
+#   "id": "3bfdde1a-7b54-45bd-b1ce-49e8ae99d3b6",
+#   "userId": "477a3e8e-96fd-45c7-84b6-1ad05a7f7add"
+# }
+###
+
+GET https://wallet.b.goit.study/api/transactions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyMy02OGI5LTQ3NmQtOWJiZS1kMTk0YjE3M2QzYTAiLCJpYXQiOjE3MTk0MTY0MTEsImV4cCI6MTAwMDAwMDE3MTk0MTY0MTJ9.DSexXXL1DioHnNHEI5U7ptOo220TX498IN4UvYJ8s94
+###
+
+DELETE https://wallet.b.goit.study/api/transactions/ece9a0cc-d7db-470e-9557-51b14ba81383
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyMy02OGI5LTQ3NmQtOWJiZS1kMTk0YjE3M2QzYTAiLCJpYXQiOjE3MTk0MTY0MTEsImV4cCI6MTAwMDAwMDE3MTk0MTY0MTJ9.DSexXXL1DioHnNHEI5U7ptOo220TX498IN4UvYJ8s94
+###
+
+PATCH https://wallet.b.goit.study/api/transactions/193f0aa2-e852-45e4-b8fd-4ed5f8520777
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyMy02OGI5LTQ3NmQtOWJiZS1kMTk0YjE3M2QzYTAiLCJpYXQiOjE3MTk0MTY0MTEsImV4cCI6MTAwMDAwMDE3MTk0MTY0MTJ9.DSexXXL1DioHnNHEI5U7ptOo220TX498IN4UvYJ8s94
+Content-Type: application/json
+
+{
+  "comment": "Lunch2"
+}

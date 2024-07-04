@@ -1,11 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './Modal.module.css';
 import Dropdown from '../Dropdown/Dropdown';
 import Notiflix from 'notiflix';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { addTransaction } from 'components/redux/transactions/operations';
 
-const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOperation }) => {
+const Modal = ({ handleCloseModal, newOperation, setNewOperation }) => {
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewOperation({ ...newOperation, [name]: value });
@@ -16,19 +20,20 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
   };
 
   const handleDateChange = (date) => {
-    setNewOperation({ ...newOperation, date: date.toISOString().slice(0, 10) });
+    setNewOperation({ ...newOperation, transactionDate: date.toISOString().slice(0, 10) });
   };
 
-  const handleCategoryChange = (category) => {
-    setNewOperation({ ...newOperation, category });
+  const handleCategoryChange = (categoryId) => {
+    setNewOperation({ ...newOperation, categoryId });
   };
 
   const handleAdd = () => {
-    if (!newOperation.date || !newOperation.type || !newOperation.sum) {
+    if (!newOperation.transactionDate || !newOperation.type || !newOperation.amount ) {
       Notiflix.Notify.failure('Please fill out all fields!');
       return;
     }
-    handleAddOperation(newOperation);
+    
+    dispatch(addTransaction(newOperation));
     handleCloseModal();
   };
 
@@ -38,9 +43,8 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
         <div className={styles.modalContent}>
           <h2>Add Transaction</h2>
           <div className={styles.inputGroup}>
-            <label className={styles.label}>Date:</label>
             <DatePicker
-              selected={newOperation.date ? new Date(newOperation.date) : null}
+              selected={newOperation.transactionDate ? new Date(newOperation.transactionDate) : null}
               onChange={handleDateChange}
               dateFormat="yyyy-MM-dd"
               className={styles.datePicker}
@@ -48,7 +52,6 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
             />
           </div>
           <div className={styles.inputGroup}>
-            <label className={styles.label}>Type:</label>
             <div className={styles.buttonGroup}>
               <button
                 className={`${styles.typeButton} ${newOperation.type === 'INCOME' ? styles.active : ''}`}
@@ -57,7 +60,7 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
                 Income
               </button>
               <button
-                className={`${styles.typeButton} ${newOperation.type === 'EXPENSE' ? styles.active : ''}`}
+                className={`${styles.typeButton} ${newOperation.type === 'EXPENSE' ? styles.redActive : ''}`}
                 onClick={() => handleTypeChange('EXPENSE')}
               >
                 Expense
@@ -65,30 +68,29 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation, handleAddOpera
             </div>
           </div>
           <div className={styles.inputGroup}>
-            <label className={styles.label}>Category:</label>
             <Dropdown
               onSelect={handleCategoryChange}
-              selectedCategory={newOperation.category}
+              selectedCategory={newOperation.categoryId}
             />
           </div>
           <div className={styles.inputGroup}>
-            <label className={styles.label}>Comment:</label>
             <input
               type="text"
               name="comment"
               value={newOperation.comment}
               onChange={handleChange}
               placeholder="Comment"
+              className={styles.inputText}
             />
           </div>
           <div className={styles.inputGroup}>
-            <label className={styles.label}>Sum:</label>
             <input
-              type="text"
-              name="sum"
-              value={newOperation.sum}
+              type="number"
+              name="amount"
+              value={newOperation.amount}
               onChange={handleChange}
-              placeholder="Sum"
+              placeholder="Amount"
+              className={styles.inputText}
             />
           </div>
           <div className={styles.buttonGroup}>

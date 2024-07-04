@@ -1,49 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { openModal, closeModal, setNewOperation } from '../../../ModalComponents/ModalSlice/ModalSlice';
+import { addTransaction } from 'components/redux/transactions/operations';
+import Modal from '../../../ModalComponents/Modal/Modal';
 import styles from './home.module.css';
 import { MdOutlineModeEditOutline } from 'react-icons/md';
-import Modal from 'components/ModalComponents/Modal/Modal';
-import { nanoid } from 'nanoid';
+import { selectTransactions, selectCategories } from '../../../redux/transactions/selectors';
 
 function Home() {
-  const [rows, setRows] = useState([]);
-
-  const [newOperation, setNewOperation] = useState({
-    id: nanoid(),
-    date: '',
-    type: 'INCOME',
-    category: '',
-    comment: '',
-    sum: '',
-  });
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleDeleteRow = (id) => {
-    const updatedRows = rows.filter((row) => row.id !== id);
-    setRows(updatedRows);
-  };
-
-  const handleAddOperation = (operation) => {
-    const updatedOperation = {
-      ...operation,
-    };
-    setRows([...rows, updatedOperation]);
-  };
+  const dispatch = useDispatch();
+  const { newOperation, isModalOpen } = useSelector((state) => state.modal);
+  const transactions = useSelector(selectTransactions);
+  const categories = useSelector(selectCategories);
 
   const handleOpenModal = () => {
-    setNewOperation({
-      id: nanoid(),
-      date: '', 
-      type: 'INCOME', 
-      category: '',
+    dispatch(setNewOperation({
+      transactionDate: '',
+      type: '',
+      categoryId: '', 
       comment: '',
-      sum: '', 
-    });
-    setIsModalOpen(true);
+      amount: '',
+    }));
+    dispatch(openModal());
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    dispatch(closeModal());
+  };
+
+  const handleAddOperation = (operation) => {
+    dispatch(addTransaction(operation));
   };
 
   return (
@@ -55,7 +41,7 @@ function Home() {
         <Modal
           handleCloseModal={handleCloseModal}
           newOperation={newOperation}
-          setNewOperation={setNewOperation}
+          setNewOperation={(operation) => dispatch(setNewOperation(operation))}
           handleAddOperation={handleAddOperation}
         />
       )}
@@ -71,29 +57,16 @@ function Home() {
           </div>
         </div>
         <div className={styles.tableBody}>
-          {rows.map((row) => (
+          {transactions.map((row) => (
             <div className={styles.transaction} key={row.id}>
               <div className={styles.tableRow}>
+                <div className={styles.tableCell}>{row.transactionDate}</div>
+                <div className={styles.tableCell}>{row.type}</div>
+                <div className={styles.tableCell}>{categories.find(cat => cat.id === row.categoryId)?.name || 'No category selected'}</div>
+                <div className={styles.tableCell}>{row.comment}</div>
+                <div className={styles.tableCell}>{row.amount} Lei</div>
                 <div className={styles.tableCell}>
-                {row.date}
-                </div>
-                <div className={styles.tableCell}>
-                  {row.type}
-                </div>
-                <div className={styles.tableCell}>
-                  {row.category ? row.category : 'No category selected'}
-                </div>
-                <div className={styles.tableCell}>
-                  {row.comment}
-                </div>
-                <div className={styles.tableCell}>
-                {row.sum} Lei
-                </div>
-                <div className={styles.tableCell}>
-                  <button
-                    className={styles.deleteBtn}
-                    onClick={() => handleDeleteRow(row.id)}
-                  >
+                  <button className={styles.deleteBtn}>
                     Delete
                   </button>
                   <button className={styles.editBtn}>
@@ -115,4 +88,3 @@ function Home() {
 }
 
 export default Home;
-

@@ -1,26 +1,26 @@
-const { createAsyncThunk } = require("@reduxjs/toolkit");
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { api } from '../../API/apiAuth';
 
 export const fetchOperations = createAsyncThunk(
-// TODO: add fetch
-    'transtactions/fetchAll',
-    async(_, thunkAPI) => {
-        try {
-            const response = await axios.get('/transactions');
-            return response.data;
-        } catch (error) {
-            return thunkAPI.rejectwithValue(error.message);
-        }
+  'transactions/fetchAll',
+  async (_, thunkAPI) => {
+    try {
+      const response = await api.get('/transactions');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
+  }
 );
 
-export const createOperation = createAsyncThunk(
-    'transaction/addTransaction',
-    async (operationData, thunkAPI) => {
-        try {
-            const response = await axios.post('https://wallet.b.goit.study/api/transactions', operationData)
-            return response.data;
-        } catch (error) {
-             return thunkAPI.rejectWithValue(error.response.data);
-        }
+export const addTransaction = createAsyncThunk(
+  'transactions/addTransaction',
+  async (newOperation, thunkAPI) => {
+    try {
+      const response = await api.post('/transactions', newOperation);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
     }
-)
+  }
+);

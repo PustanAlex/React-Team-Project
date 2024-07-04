@@ -1,0 +1,32 @@
+GET https://openexchangerates.org/api/latest.json?app_id=1ce8df03b2fc4f09b557bc1866f3c437&symbols=EUR,RON
+
+# {
+#   "disclaimer": "Usage subject to terms: https://openexchangerates.org/terms",
+#   "license": "https://openexchangerates.org/license",
+#   "timestamp": 1719406800,
+#   "base": "USD",
+#   "rates": {
+#     "EUR": 0.936612,
+#     "RON": 4.6618
+#   }
+# }
+###
+
+GET https://openexchangerates.org/api/historical/2024-06-25.json?app_id=1ce8df03b2fc4f09b557bc1866f3c437&symbols=EUR,RON
+
+# {
+#   "disclaimer": "Usage subject to terms: https://openexchangerates.org/terms",
+#   "license": "https://openexchangerates.org/license",
+#   "timestamp": 1719359991,
+#   "base": "USD",
+#   "rates": {
+#     "EUR": 0.933762,
+#     "RON": 4.6453
+#   }
+# }
+###
+
+GET https://openexchangerates.org/api/usage.json
+    ?app_id=1ce8df03b2fc4f09b557bc1866f3c437
+###
+
