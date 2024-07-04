@@ -14,7 +14,6 @@ import icons from '../../Images/Icons/icons.svg';
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector((state) => state.auth.error);
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
