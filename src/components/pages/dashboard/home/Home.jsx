@@ -35,7 +35,7 @@ function Home() {
   return (
     <div className={styles.statistics}>
       <button onClick={handleOpenModal} className={styles.openModalBtn}>
-        Add Transaction
+        +
       </button>
       {isModalOpen && (
         <Modal
