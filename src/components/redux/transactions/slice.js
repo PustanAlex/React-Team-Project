@@ -1,10 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getTransactionsCategories, getAllTransactions, addTransaction, updatedTransaction, deleteTransaction, getTransactionsSummary } from './operations';
 
+const today = new Date();
 const initialState = {
   categories: [],
   transactions: [],
-  summary: [],
+  summary: {
+    "categoriesSummary": [
+      /* {
+        "name": "Main expenses",
+        "type": "EXPENSE",
+        "total": -21
+      } */
+    ],
+    "incomeSummary": 0,
+    "expenseSummary": 0,
+    "periodTotal": NaN,
+    "year": today.getFullYear(),
+    "month": today.getMonth() + 1
+  },
   loading: false,
   error: null,
 };
