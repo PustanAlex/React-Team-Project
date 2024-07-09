@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth/authSlice';
 import modalReducer from '../ModalComponents/ModalSlice/ModalSlice';
-import { transactionsReducer } from './transactions/slice';
+import transactionsReducer from './transactions/slice';
 
 const preloadedState = {
   auth: {
@@ -12,12 +12,11 @@ const preloadedState = {
   modal: {
     operations: [],
     newOperation: {
-      id: '',
-      date: '',
-      type: 'INCOME',
-      category: '',
+      transactionDate: '',
+      type: '',
+      categoryId: '',
       comment: '',
-      sum: '',
+      amount: '',
     },
     isModalOpen: false,
     loading: false,

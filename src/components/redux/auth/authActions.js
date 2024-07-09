@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
 import { setToken, api } from '../../API/apiAuth';
 
 export const refreshUser = createAsyncThunk('auth/refreshUser', async (_, thunkAPI) => {
@@ -14,7 +13,6 @@ export const refreshUser = createAsyncThunk('auth/refreshUser', async (_, thunkA
   }
 });
 
-
 export const registerUser = createAsyncThunk('auth/register', async (userData, thunkAPI) => {
   try {
     const response = await api.post('auth/sign-up', userData);
@@ -27,6 +25,8 @@ export const registerUser = createAsyncThunk('auth/register', async (userData, t
 export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
     const response = await api.post('auth/sign-in', credentials);
+    localStorage.setItem('token', response.data.token);
+    setToken(response.data.token);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
@@ -41,6 +41,8 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    localStorage.removeItem('token');
+    setToken(null);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);

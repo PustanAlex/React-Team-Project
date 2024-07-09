@@ -1,15 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchOperations, createOperation } from '../../redux/fetchOperations/fetchOperations';
+import { fetchOperations, addTransaction } from '../../redux/fetchOperations/fetchOperations';
 
 const initialState = {
   operations: [],
   newOperation: {
-    id: '',
-    date: '',
-    type: 'INCOME',
-    category: '',
+    transactionDate: '',
+    type: '',
+    categoryId: '',
     comment: '',
-    sum: '',
+    amount: '',
   },
   isModalOpen: false,
   loading: false,
@@ -44,16 +43,16 @@ const modalSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(createOperation.pending, (state) => {
+      .addCase(addTransaction.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(createOperation.fulfilled, (state, action) => {
+      .addCase(addTransaction.fulfilled, (state, action) => {
         state.loading = false;
         state.operations.push(action.payload);
         state.isModalOpen = false;
       })
-      .addCase(createOperation.rejected, (state, action) => {
+      .addCase(addTransaction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
