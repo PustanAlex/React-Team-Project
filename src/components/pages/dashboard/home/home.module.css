@@ -159,6 +159,9 @@
   }
 
   .rightSide {
+    width: 100%;
+    min-height: 293px;
+    padding: 0px;
     background: #101010
       linear-gradient(
         219.62deg,
@@ -166,11 +169,34 @@
         rgba(101, 35, 146, 0.6) 66.76%
       );
 
-    width: 100%;
-    padding: 0px;
+    .rightContainer {
+      padding: 10px;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      gap: 10px;
+      }
 
     .statistics {
       width: 100%;
+      position: relative;
+
+    }
+
+    .openModalBtn {
+      background: linear-gradient(96.76deg, #FFC727 -16.42%, #9E40BA 97.04%, #7000FF 150.71%);
+      border-radius: 30px;
+      width: 44px;
+      height: 44px;
+      font-size: 30px;
+      gap: 0px;
+      border: 0px solid #FFFFFF;
+      color: #f4f4f4;
+      cursor: pointer;
+      box-shadow: 1px 9px 15px 0px #00000033;
+      position: absolute;
+      bottom: 10px;
+      right: 2px;
     }
 
     .table {

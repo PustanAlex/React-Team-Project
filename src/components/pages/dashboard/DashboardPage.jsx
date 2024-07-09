@@ -17,7 +17,9 @@ function DashboardPage() {
           <Currency />
         </div>
         <div className={styles.rightSide}>
+          <div className={styles.rightContainer}>
           <Outlet />
+          </div>
         </div>
       </div>
     </>
