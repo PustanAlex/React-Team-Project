@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider, redirect } from 'react-router-dom';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import Home from './pages/dashboard/home/Home';
-import Statistics from './pages/Statistics'; 
+import Statistics from './pages/dashboard/statistics/StatisticsTab'; 
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import PrivateRoute from './pages/PriveteRoute'; 
