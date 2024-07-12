@@ -3,7 +3,7 @@ import css from './StatisticsDashboard.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoIosArrowDown } from 'react-icons/io';
 import { getTransactionsSummary } from '../../../redux/transactions/operations';
-import { selectorSummaryTr } from '../../../redux/transactions/selectors';
+import { selectorSummary } from '../../../redux/transactions/selectors';
 
 
 const months = (() => {
@@ -20,7 +20,7 @@ const months = (() => {
 
 function StatisticsDashboard() {
   const dispatch = useDispatch();
-  const summary = useSelector(selectorSummaryTr);
+  const summary = useSelector(selectorSummary);
   const [selectedMonth, setSelectedMonth] = useState(summary.month);
   const [selectedYear, setSelectedYear] = useState(summary.year);
   const [isMonthDropdownOpen, setIsMonthDropdownOpen] = useState(false);
@@ -52,36 +52,36 @@ function StatisticsDashboard() {
   const yearOptions = Array.from({ length: 10 }, (_, index) => new Date().getFullYear() - index);
 
   return (
-    <div className={`${css.statisticsDashboard}`}>
-      <div className={css.selectContainer}>
-        <div className={css.selectWrapper}>
-          <div className={css.label} onClick={toggleMonthDropdown}>
-            {months[selectedMonth - 1]}
-            <IoIosArrowDown className={`${css.dropdownIcon} ${isMonthDropdownOpen ? 'open' : ''}`} />
-          </div>
-          <div className={css.dropdown} hidden={!isMonthDropdownOpen}>
-            {months.map((month, index) => (
-              <div key={index} className={css.option} onClick={() => handleMonthChange(index)}>
-                {month}
-              </div>
-            ))}
-          </div>
+    // <div className={css.statisticsDashboard}>
+    <div className={css.selectContainer}>
+      <div className={css.selectWrapper}>
+        <div className={css.label} onClick={toggleMonthDropdown}>
+          {months[selectedMonth - 1]}
+          <IoIosArrowDown className={`${css.dropdownIcon} ${isMonthDropdownOpen ? 'open' : ''}`} />
         </div>
-        <div className={css.selectWrapper}>
-          <div className={css.label} onClick={toggleYearDropdown}>
-            {selectedYear}
-            <IoIosArrowDown className={`${css.dropdownIcon} ${isYearDropdownOpen ? 'open' : ''}`} />
-          </div>
-          <div className={css.dropdown} hidden={!isYearDropdownOpen}>
-            {yearOptions.map((year, index) => (
-              <div key={index} className={css.option} onClick={() => handleYearChange(year)}>
-                {year}
-              </div>
-            ))}
-          </div>
+        <div className={css.dropdown} hidden={!isMonthDropdownOpen}>
+          {months.map((month, index) => (
+            <div key={index} className={css.option} onClick={() => handleMonthChange(index)}>
+              {month}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className={css.selectWrapper}>
+        <div className={css.label} onClick={toggleYearDropdown}>
+          {selectedYear}
+          <IoIosArrowDown className={`${css.dropdownIcon} ${isYearDropdownOpen ? 'open' : ''}`} />
+        </div>
+        <div className={css.dropdown} hidden={!isYearDropdownOpen}>
+          {yearOptions.map((year, index) => (
+            <div key={index} className={css.option} onClick={() => handleYearChange(year)}>
+              {year}
+            </div>
+          ))}
         </div>
       </div>
     </div>
+    // </div>
   );
 }
 
