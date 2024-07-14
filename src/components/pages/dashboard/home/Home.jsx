@@ -11,6 +11,7 @@ import {
   selectTransactions,
   selectCategories,
 } from '../../../redux/transactions/selectors';
+import { deleteTransaction } from '../../../redux/transactions/operations';
 
 function Home() {
   const dispatch = useDispatch();
@@ -29,6 +30,9 @@ function Home() {
     dispatch(openModal());
   };
 
+  const deleteTransactionHandler = id => () => {
+    dispatch(deleteTransaction(id));
+  };
   const handleCloseModal = () => {
     dispatch(closeModal());
   };
@@ -69,7 +73,7 @@ function Home() {
                 <div className={styles.tableCell}>{row.comment}</div>
                 <div className={styles.tableCell}>{row.amount} Lei</div>
                 <div className={styles.tableCell}>
-                  <button className={styles.deleteBtn}>Delete</button>
+                  <button className={styles.deleteBtn} onClick={deleteTransactionHandler(row.id)}>Delete</button>
                   <button className={styles.editBtn} onClick={() => handleOpenModal(row)}>
                     <div>
                       <div className={styles.editIcon}>
