@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { registerUser, login, logout, refreshUser } from './authActions';
+import { setBalance } from '../transactions/slice';
 
 const initialState = {
   user: JSON.parse(localStorage.getItem('user')) || null,
@@ -25,6 +26,7 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
+        setBalance(state, action.payload.user.balance);
         state.isAuthenticated = true;
         state.error = null;
         localStorage.setItem('user', JSON.stringify(action.payload.user));

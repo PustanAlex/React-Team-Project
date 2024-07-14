@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -7,6 +6,7 @@ import { login } from '../../redux/auth/authActions';
 import { MdEmail } from 'react-icons/md';
 import { IoMdLock } from 'react-icons/io';
 import styles from './Login.module.css';
+import icons from '../../Images/Icons/icons.svg';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -32,20 +32,28 @@ const LoginForm = () => {
 
   return (
     <div className={styles.loginContainer}>
+
+
       <div className={styles.loginBox}>
-        <h2>Login</h2>
+        <div className={styles.logoGroup}>
+          <svg className={styles.iconLogo} width={25} height={25}>
+            <use href={`${icons}#icon-Logo`} />
+          </svg>
+          <span className={styles.title}>Money Guard</span>
+        </div>
         <form onSubmit={formik.handleSubmit} className={styles.loginForm}>
           <div className={styles.formGroup}>
             <label htmlFor="email" className={styles.formLabel}>
               <MdEmail className={styles.icon} />
+              <input
+                id="email"
+                type="email"
+                placeholder="Email"
+                {...formik.getFieldProps('email')}
+                className={styles.formInput}
+                autoComplete="email"
+              />
             </label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Email"
-              {...formik.getFieldProps('email')}
-              className={styles.formInput}
-            />
             {formik.touched.email && formik.errors.email && (
               <div className={styles.error}>{formik.errors.email}</div>
             )}
@@ -54,20 +62,21 @@ const LoginForm = () => {
           <div className={styles.formGroup}>
             <label htmlFor="password" className={styles.formLabel}>
               <IoMdLock className={styles.icon} />
+              <input
+                id="password"
+                type="password"
+                placeholder="Password"
+                {...formik.getFieldProps('password')}
+                className={styles.formInput}
+                autoComplete="current-password"
+              />
             </label>
-            <input
-              id="password"
-              type="password"
-              placeholder="Password"
-              {...formik.getFieldProps('password')}
-              className={styles.formInput}
-            />
             {formik.touched.password && formik.errors.password && (
               <div className={styles.error}>{formik.errors.password}</div>
             )}
           </div>
 
-          {error && <div style={{ color: 'red' }}>{error}</div>}
+          {error && <div className={styles.errorColor}>{error}</div>}
 
           <button type="submit" className={styles.loginButton}>
             Login
@@ -81,4 +90,6 @@ const LoginForm = () => {
   );
 };
 
+
 export default LoginForm;
+

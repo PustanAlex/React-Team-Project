@@ -76,3 +76,21 @@ Content-Type: application/json
 {
   "comment": "Lunch2"
 }
+###
+GET https://wallet.b.goit.study/api/transactions-summary?month=6&year=2024
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlOWE4MGUyMy02OGI5LTQ3NmQtOWJiZS1kMTk0YjE3M2QzYTAiLCJpYXQiOjE3MTk0MTY0MTEsImV4cCI6MTAwMDAwMDE3MTk0MTY0MTJ9.DSexXXL1DioHnNHEI5U7ptOo220TX498IN4UvYJ8s94
+
+# {
+#   "categoriesSummary": [
+#     {
+#       "name": "Main expenses",
+#       "type": "EXPENSE",
+#       "total": -21
+#     }
+#   ],
+#   "incomeSummary": 0,
+#   "expenseSummary": -21,
+#   "periodTotal": -21,
+#   "year": 2024,
+#   "month": 6
+# }

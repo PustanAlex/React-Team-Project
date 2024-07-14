@@ -2,14 +2,15 @@ import { useEffect } from 'react';
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider, redirect } from 'react-router-dom';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import Home from './pages/dashboard/home/Home';
-import Statistics from './pages/Statistics'; 
+import Statistics from './pages/dashboard/statistics/StatisticsTab';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
-import PrivateRoute from './pages/PriveteRoute'; 
+import PrivateRoute from './pages/PriveteRoute';
 // import { refreshUser } from './redux/auth/authActions';
 import { useDispatch, useSelector } from 'react-redux';
 import store from './redux/store';
 import { getAllTransactions, getTransactionsCategories } from './redux/transactions/operations';
+import Loader from './pages/Loader';
 
 async function transactionsLoader() {
   await Promise.allSettled([
@@ -23,21 +24,21 @@ function authLoader() {
 }
 
 const router = createBrowserRouter(createRoutesFromElements(<>
-    <Route path="/" loader={authLoader} />
-    <Route path="/login" element={<Login />} />
-    <Route path="/register" element={<Register />} />
-    <Route path="/dashboard" element={<PrivateRoute element={DashboardPage} />} loader={transactionsLoader} >
-      <Route index element={<Home />} />
-      <Route path="home" element={<Home />} />
-      <Route path="statistics" element={<Statistics />} />
-    </Route>
-  </>), { basename: import.meta.env.DEV ? '/' : '/React-Team-Project' }
-// process.env.NODE_ENV!=='production'
+  <Route path="/" loader={authLoader} />
+  <Route path="/login" element={<Login />} />
+  <Route path="/register" element={<Register />} />
+  <Route path="/dashboard" element={<PrivateRoute element={DashboardPage} />} loader={transactionsLoader} >
+    <Route index element={<Home />} />
+    <Route path="home" element={<Home />} />
+    <Route path="statistics" element={<Statistics />} />
+  </Route>
+</>), { basename: import.meta.env.DEV ? '/' : '/React-Team-Project' }
+  // process.env.NODE_ENV!=='production'
 );
 
 
 export const App = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ export const App = () => {
     }
   }, [dispatch, isAuthenticated]);
   return (
-    <RouterProvider router={router} /* fallbackElement={<Loader />} */ />
+    <RouterProvider router={router} fallbackElement={<Loader />} />
   );
 };
 
