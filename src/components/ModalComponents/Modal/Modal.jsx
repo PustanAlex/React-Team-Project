@@ -1,39 +1,48 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import styles from './Modal.module.css';
 import Dropdown from '../Dropdown/Dropdown';
 import Notiflix from 'notiflix';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { addTransaction } from 'components/redux/transactions/operations';
+import { addTransaction, updatedTransaction } from '../../redux/transactions/operations';
 
 const Modal = ({ handleCloseModal, newOperation, setNewOperation }) => {
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setNewOperation({ ...newOperation, [name]: value });
   };
 
-  const handleTypeChange = (type) => {
+  const handleTypeChange = type => {
     setNewOperation({ ...newOperation, type });
   };
 
-  const handleDateChange = (date) => {
-    setNewOperation({ ...newOperation, transactionDate: date.toISOString().slice(0, 10) });
+  const handleDateChange = date => {
+    setNewOperation({
+      ...newOperation,
+      transactionDate: date.toISOString().slice(0, 10),
+    });
   };
 
-  const handleCategoryChange = (categoryId) => {
+  const handleCategoryChange = categoryId => {
     setNewOperation({ ...newOperation, categoryId });
   };
 
   const handleAdd = () => {
-    if (!newOperation.transactionDate || !newOperation.type || !newOperation.amount ) {
+    if (
+      !newOperation.transactionDate ||
+      !newOperation.type ||
+      !newOperation.amount
+    ) {
       Notiflix.Notify.failure('Please fill out all fields!');
       return;
     }
-    
-    dispatch(addTransaction(newOperation));
+    const { id, transactionDate, type, comment, amount, categoryId } = newOperation
+    newOperation = { id, transactionDate, type, comment, amount: +amount, categoryId }
+    newOperation.amount *= (newOperation.type === 'INCOME') === (newOperation.amount > 0) ? 1 : -1
+    dispatch(newOperation.id ? updatedTransaction(newOperation) : addTransaction(newOperation));
     handleCloseModal();
   };
 
@@ -44,7 +53,11 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation }) => {
           <h2>Add Transaction</h2>
           <div className={styles.inputGroup}>
             <DatePicker
-              selected={newOperation.transactionDate ? new Date(newOperation.transactionDate) : null}
+              selected={
+                newOperation.transactionDate
+                  ? new Date(newOperation.transactionDate)
+                  : null
+              }
               onChange={handleDateChange}
               dateFormat="yyyy-MM-dd"
               className={styles.datePicker}
@@ -54,13 +67,15 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation }) => {
           <div className={styles.inputGroup}>
             <div className={styles.buttonGroup}>
               <button
-                className={`${styles.typeButton} ${newOperation.type === 'INCOME' ? styles.active : ''}`}
+                className={`${styles.typeButton} ${newOperation.type === 'INCOME' ? styles.active : ''
+                  }`}
                 onClick={() => handleTypeChange('INCOME')}
               >
                 Income
               </button>
               <button
-                className={`${styles.typeButton} ${newOperation.type === 'EXPENSE' ? styles.redActive : ''}`}
+                className={`${styles.typeButton} ${newOperation.type === 'EXPENSE' ? styles.redActive : ''
+                  }`}
                 onClick={() => handleTypeChange('EXPENSE')}
               >
                 Expense
@@ -105,6 +120,12 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation }) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  handleCloseModal: PropTypes.func.isRequired,
+  newOperation: PropTypes.object.isRequired,
+  setNewOperation: PropTypes.func.isRequired,
 };
 
 export default Modal;

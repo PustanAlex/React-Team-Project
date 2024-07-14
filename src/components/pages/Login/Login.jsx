@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -33,15 +32,15 @@ const LoginForm = () => {
 
   return (
     <div className={styles.loginContainer}>
-      
-      
+
+
       <div className={styles.loginBox}>
-      <div className={styles.logoGroup}>
-      <svg className={styles.iconLogo} width={25} height={25}>
-        <use href={`${icons}#icon-Logo`} />
-      </svg>
-      <span className={styles.title}>Money Guard</span>
-    </div>
+        <div className={styles.logoGroup}>
+          <svg className={styles.iconLogo} width={25} height={25}>
+            <use href={`${icons}#icon-Logo`} />
+          </svg>
+          <span className={styles.title}>Money Guard</span>
+        </div>
         <form onSubmit={formik.handleSubmit} className={styles.loginForm}>
           <div className={styles.formGroup}>
             <label htmlFor="email" className={styles.formLabel}>
@@ -52,6 +51,7 @@ const LoginForm = () => {
                 placeholder="Email"
                 {...formik.getFieldProps('email')}
                 className={styles.formInput}
+                autoComplete="email"
               />
             </label>
             {formik.touched.email && formik.errors.email && (
@@ -68,6 +68,7 @@ const LoginForm = () => {
                 placeholder="Password"
                 {...formik.getFieldProps('password')}
                 className={styles.formInput}
+                autoComplete="current-password"
               />
             </label>
             {formik.touched.password && formik.errors.password && (

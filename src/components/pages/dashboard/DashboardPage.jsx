@@ -4,9 +4,13 @@ import Currency from './Currency';
 import styles from './home/home.module.css';
 import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header';
+import { useSelector } from 'react-redux';
+import { selectorIsLoading } from '../../redux/transactions/selectors';
+import Loader from '../Loader';
 
 
 function DashboardPage() {
+  const isLoading = useSelector(selectorIsLoading);
   return (
     <>
       <Header />
@@ -17,9 +21,12 @@ function DashboardPage() {
           <Currency />
         </div>
         <div className={styles.rightSide}>
-          <Outlet />
+          <div className={styles.rightContainer}>
+            <Outlet />
+          </div>
         </div>
       </div>
+      <Loader hidden={!isLoading} />
     </>
   );
 }
