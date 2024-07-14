@@ -8,5 +8,4 @@ export const selectFilteredCategories = createSelector(
 
 export const selectorSummary = state => state.transactions.summary;
 export const selectorIsLoading = state => state.transactions.loading;
-
-
+export const selectBalance = state => state.transactions.balance;

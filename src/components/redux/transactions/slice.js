@@ -21,6 +21,7 @@ const initialState = {
   },
   loading: false,
   error: null,
+  balance: 0,
 };
 
 // const settled = (state) => {
@@ -36,7 +37,11 @@ const pending = (state) => {
 const transactionsSlice = createSlice({
   name: 'transactions',
   initialState,
-  reducers: {},
+  reducers: {
+    setBalance: (state, action) => {
+      state.balance = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getTransactionsCategories.pending, pending)
@@ -46,29 +51,38 @@ const transactionsSlice = createSlice({
       })
       .addCase(getTransactionsCategories.rejected, rejected)
       .addCase(getAllTransactions.pending, pending)
-      .addCase(getAllTransactions.fulfilled, (state, action) => {
-        state.transactions = action.payload;
+      .addCase(getAllTransactions.fulfilled, (state, { payload }) => {
+        state.transactions = payload;
+        state.balance = payload.reduce((acc, t) => acc + t.amount, 0);
         state.loading = false;
       })
       .addCase(getAllTransactions.rejected, rejected)
       .addCase(addTransaction.pending, pending)
-      .addCase(addTransaction.fulfilled, (state, action) => {
-        state.transactions.push(action.payload);
+      .addCase(addTransaction.fulfilled, (state, { payload }) => {
+        state.transactions.push(payload);
+        state.balance += payload.amount;
         state.loading = false;
       })
       .addCase(addTransaction.rejected, rejected)
       .addCase(updatedTransaction.pending, pending)
-      .addCase(updatedTransaction.fulfilled, (state, action) => {
-        const index = state.transactions.findIndex(transaction => transaction.id === action.payload.id);
-        if (index !== -1) {
-          state.transactions[index] = action.payload;
+      .addCase(updatedTransaction.fulfilled, (state, { payload }) => {
+        const oldTransaction = state.transactions.find(transaction => transaction.id === payload.id);
+        if (oldTransaction) {
+          const deltaAmount = payload.amount - oldTransaction.amount;
+          state.balance += deltaAmount;
+          // state.balance = payload.balanceAfter;
+          Object.assign(oldTransaction, payload);
         }
         state.loading = false;
       })
       .addCase(updatedTransaction.rejected, rejected)
       .addCase(deleteTransaction.pending, pending)
-      .addCase(deleteTransaction.fulfilled, (state, action) => {
-        state.transactions = state.transactions.filter(transaction => transaction.id !== action.payload);
+      .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
+        const transactionIndex = state.transactions.findIndex(t => t.id === payload)
+        if (transactionIndex !== -1) {
+          state.balance -= state.transactions[transactionIndex].amount;
+          state.transactions.splice(transactionIndex, 1)
+        }
         state.loading = false;
       })
       .addCase(deleteTransaction.rejected, rejected)
@@ -82,3 +96,4 @@ const transactionsSlice = createSlice({
 });
 
 export default transactionsSlice.reducer;
+export const { setBalance } = transactionsSlice.actions;

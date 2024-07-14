@@ -1,17 +1,10 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getTransactionsCategories } from '../../redux/transactions/operations';
+import { useSelector } from 'react-redux';
 import styles from './Dropdown.module.css';
 
 const Dropdown = ({ onSelect, selectedCategory }) => {
-  const dispatch = useDispatch();
   const categories = useSelector(state => state.transactions.categories);
   const loading = useSelector(state => state.transactions.loading);
-
-  useEffect(() => {
-    dispatch(getTransactionsCategories());
-  }, [dispatch]);
 
   const handleSelectChange = e => {
     const categoryId = e.target.value;

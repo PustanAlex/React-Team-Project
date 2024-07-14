@@ -5,7 +5,7 @@ import Dropdown from '../Dropdown/Dropdown';
 import Notiflix from 'notiflix';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { addTransaction } from '../../redux/transactions/operations';
+import { addTransaction, updatedTransaction } from '../../redux/transactions/operations';
 
 const Modal = ({ handleCloseModal, newOperation, setNewOperation }) => {
   const dispatch = useDispatch();
@@ -39,8 +39,10 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation }) => {
       Notiflix.Notify.failure('Please fill out all fields!');
       return;
     }
-
-    dispatch(addTransaction(newOperation));
+    const { id, transactionDate, type, comment, amount, categoryId } = newOperation
+    newOperation = { id, transactionDate, type, comment, amount: +amount, categoryId }
+    newOperation.amount *= (newOperation.type === 'INCOME') === (newOperation.amount > 0) ? 1 : -1
+    dispatch(newOperation.id ? updatedTransaction(newOperation) : addTransaction(newOperation));
     handleCloseModal();
   };
 
@@ -65,17 +67,15 @@ const Modal = ({ handleCloseModal, newOperation, setNewOperation }) => {
           <div className={styles.inputGroup}>
             <div className={styles.buttonGroup}>
               <button
-                className={`${styles.typeButton} ${
-                  newOperation.type === 'INCOME' ? styles.active : ''
-                }`}
+                className={`${styles.typeButton} ${newOperation.type === 'INCOME' ? styles.active : ''
+                  }`}
                 onClick={() => handleTypeChange('INCOME')}
               >
                 Income
               </button>
               <button
-                className={`${styles.typeButton} ${
-                  newOperation.type === 'EXPENSE' ? styles.redActive : ''
-                }`}
+                className={`${styles.typeButton} ${newOperation.type === 'EXPENSE' ? styles.redActive : ''
+                  }`}
                 onClick={() => handleTypeChange('EXPENSE')}
               >
                 Expense

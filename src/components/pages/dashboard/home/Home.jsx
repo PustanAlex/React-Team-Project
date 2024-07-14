@@ -4,7 +4,6 @@ import {
   closeModal,
   setNewOperation,
 } from '../../../ModalComponents/ModalSlice/ModalSlice';
-import { addTransaction } from '../../../redux/transactions/operations';
 import Modal from '../../../ModalComponents/Modal/Modal';
 import styles from './home.module.css';
 import { MdOutlineModeEditOutline } from 'react-icons/md';
@@ -19,25 +18,19 @@ function Home() {
   const transactions = useSelector(selectTransactions);
   const categories = useSelector(selectCategories);
 
-  const handleOpenModal = () => {
-    dispatch(
-      setNewOperation({
-        transactionDate: '',
-        type: '',
-        categoryId: '',
-        comment: '',
-        amount: '',
-      })
-    );
+  const handleOpenModal = (transaction = null) => {
+    dispatch(transaction ? setNewOperation(transaction) : setNewOperation({
+      transactionDate: '',
+      type: '',
+      categoryId: '',
+      comment: '',
+      amount: '',
+    }));
     dispatch(openModal());
   };
 
   const handleCloseModal = () => {
     dispatch(closeModal());
-  };
-
-  const handleAddOperation = operation => {
-    dispatch(addTransaction(operation));
   };
 
   return (
@@ -50,7 +43,6 @@ function Home() {
           handleCloseModal={handleCloseModal}
           newOperation={newOperation}
           setNewOperation={operation => dispatch(setNewOperation(operation))}
-          handleAddOperation={handleAddOperation}
         />
       )}
       <div className={styles.table}>
@@ -78,7 +70,7 @@ function Home() {
                 <div className={styles.tableCell}>{row.amount} Lei</div>
                 <div className={styles.tableCell}>
                   <button className={styles.deleteBtn}>Delete</button>
-                  <button className={styles.editBtn}>
+                  <button className={styles.editBtn} onClick={() => handleOpenModal(row)}>
                     <div>
                       <div className={styles.editIcon}>
                         <MdOutlineModeEditOutline />
