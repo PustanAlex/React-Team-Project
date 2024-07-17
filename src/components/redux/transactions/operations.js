@@ -63,9 +63,9 @@ export const deleteTransaction = createAsyncThunk(
 
 export const getTransactionsSummary = createAsyncThunk(
   'transactions/summaryController',
-  async (_, ThunkAPI) => {
+  async ({ month, year }, ThunkAPI) => {
     try {
-      const { data } = await api.post('/transactions-summary');
+      const { data } = await api.get(`/transactions-summary?month=${month}&year=${year}`);
       return data;
     } catch (error) {
       return ThunkAPI.rejectWithValue(error.message);

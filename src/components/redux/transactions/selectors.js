@@ -6,5 +6,6 @@ export const selectFilteredCategories = createSelector(
   categories => categories.filter(category => category.type === "EXPENSE")
 );
 
-
-
+export const selectorSummary = state => state.transactions.summary;
+export const selectorIsLoading = state => state.transactions.loading;
+export const selectBalance = state => state.transactions.balance;

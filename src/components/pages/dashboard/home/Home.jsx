@@ -1,35 +1,40 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal, closeModal, setNewOperation } from '../../../ModalComponents/ModalSlice/ModalSlice';
-import { addTransaction } from 'components/redux/transactions/operations';
+import {
+  openModal,
+  closeModal,
+  setNewOperation,
+} from '../../../ModalComponents/ModalSlice/ModalSlice';
 import Modal from '../../../ModalComponents/Modal/Modal';
 import styles from './home.module.css';
 import { MdOutlineModeEditOutline } from 'react-icons/md';
-import { selectTransactions, selectCategories } from '../../../redux/transactions/selectors';
+import {
+  selectTransactions,
+  selectCategories,
+} from '../../../redux/transactions/selectors';
+import { deleteTransaction } from '../../../redux/transactions/operations';
 
 function Home() {
   const dispatch = useDispatch();
-  const { newOperation, isModalOpen } = useSelector((state) => state.modal);
+  const { newOperation, isModalOpen } = useSelector(state => state.modal);
   const transactions = useSelector(selectTransactions);
   const categories = useSelector(selectCategories);
 
-  const handleOpenModal = () => {
-    dispatch(setNewOperation({
+  const handleOpenModal = (transaction = null) => {
+    dispatch(transaction ? setNewOperation(transaction) : setNewOperation({
       transactionDate: '',
       type: '',
-      categoryId: '', 
+      categoryId: '',
       comment: '',
       amount: '',
     }));
     dispatch(openModal());
   };
 
+  const deleteTransactionHandler = id => () => {
+    dispatch(deleteTransaction(id));
+  };
   const handleCloseModal = () => {
     dispatch(closeModal());
-  };
-
-  const handleAddOperation = (operation) => {
-    dispatch(addTransaction(operation));
   };
 
   return (
@@ -41,8 +46,7 @@ function Home() {
         <Modal
           handleCloseModal={handleCloseModal}
           newOperation={newOperation}
-          setNewOperation={(operation) => dispatch(setNewOperation(operation))}
-          handleAddOperation={handleAddOperation}
+          setNewOperation={operation => dispatch(setNewOperation(operation))}
         />
       )}
       <div className={styles.table}>
@@ -57,19 +61,20 @@ function Home() {
           </div>
         </div>
         <div className={styles.tableBody}>
-          {transactions.map((row) => (
+          {transactions.map(row => (
             <div className={styles.transaction} key={row.id}>
               <div className={styles.tableRow}>
                 <div className={styles.tableCell}>{row.transactionDate}</div>
                 <div className={styles.tableCell}>{row.type}</div>
-                <div className={styles.tableCell}>{categories.find(cat => cat.id === row.categoryId)?.name || 'No category selected'}</div>
+                <div className={styles.tableCell}>
+                  {categories.find(cat => cat.id === row.categoryId)?.name ||
+                    'No category selected'}
+                </div>
                 <div className={styles.tableCell}>{row.comment}</div>
                 <div className={styles.tableCell}>{row.amount} Lei</div>
                 <div className={styles.tableCell}>
-                  <button className={styles.deleteBtn}>
-                    Delete
-                  </button>
-                  <button className={styles.editBtn}>
+                  <button className={styles.deleteBtn} onClick={deleteTransactionHandler(row.id)}>Delete</button>
+                  <button className={styles.editBtn} onClick={() => handleOpenModal(row)}>
                     <div>
                       <div className={styles.editIcon}>
                         <MdOutlineModeEditOutline />
